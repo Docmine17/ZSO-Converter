@@ -1,0 +1,28 @@
+app-id: org.ziso.gui
+runtime: org.gnome.Platform
+runtime-version: '49'
+sdk: org.gnome.Sdk
+command: ziso
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --env=GTK_USE_PORTAL=1
+modules:
+  - name: lz4
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app --no-deps --no-build-isolation .
+    sources:
+      - type: archive
+        url: https://pypi.org/packages/source/l/lz4/lz4-4.4.5.tar.gz
+        sha256: 5f0b9e53c1e82e88c10d7c180069363980136b9d7a8306c4dca4f760d60c39f0
+
+  - name: ziso
+    buildsystem: simple
+    build-commands:
+      - install -D ziso.py /app/bin/ziso
+    sources:
+      - type: file
+        path: ziso.py

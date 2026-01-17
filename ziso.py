@@ -366,13 +366,22 @@ class ZisoGUI(Gtk.ApplicationWindow):
         vbox.pack_start(hbox_out, False, False, 0)
         
         hbox_out.pack_start(Gtk.Label(label="Salvar em:"), False, False, 0)
-        self.folder_btn = Gtk.FileChooserButton(
-            title="Selecione a Pasta de Destino",
-            action=Gtk.FileChooserAction.SELECT_FOLDER
-        )
-        self.folder_btn.set_width_chars(30)
-        self.folder_btn.connect("file-set", self.update_ui_state)
-        hbox_out.pack_start(self.folder_btn, True, True, 0)
+        
+        # Replacement for Gtk.FileChooserButton to ensure Portal usage
+        self.btn_select_folder = Gtk.Button(label="Selecionar Pasta...")
+        image = Gtk.Image.new_from_icon_name("folder-open-symbolic", Gtk.IconSize.BUTTON)
+        self.btn_select_folder.set_image(image)
+        self.btn_select_folder.connect("clicked", self.on_select_dest_folder)
+        hbox_out.pack_start(self.btn_select_folder, False, False, 0)
+        
+        self.lbl_dest_folder = Gtk.Label(label="<Nenhuma pasta selecionada>")
+        self.lbl_dest_folder.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        self.lbl_dest_folder.set_alignment(0, 0.5)
+        # Style the label to look like a placeholder or path
+        hbox_out.pack_start(self.lbl_dest_folder, True, True, 0)
+
+        # Dest folder variable storage
+        self.destination_folder = None
 
         # Compression level
         hbox_level = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
@@ -438,15 +447,32 @@ class ZisoGUI(Gtk.ApplicationWindow):
         if self.processing:
             self.convert_btn.set_sensitive(False)
             self.tree.set_sensitive(False)
-            self.folder_btn.set_sensitive(False)
+            self.btn_select_folder.set_sensitive(False)
             return
 
         has_files = len(self.store) > 0
-        has_folder = self.folder_btn.get_filename() is not None
+        has_folder = self.destination_folder is not None
         
         self.convert_btn.set_sensitive(has_files and has_folder)
         self.tree.set_sensitive(True)
-        self.folder_btn.set_sensitive(True)
+        self.btn_select_folder.set_sensitive(True)
+
+    def on_select_dest_folder(self, btn):
+        dialog = Gtk.FileChooserNative(
+            title="Selecionar Pasta de Destino",
+            transient_for=self,
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+        )
+        
+        response = dialog.run()
+        if response == Gtk.ResponseType.ACCEPT:
+            folder = dialog.get_filename()
+            if folder:
+                self.destination_folder = folder
+                self.lbl_dest_folder.set_text(folder)
+                self.btn_select_folder.set_label("Alterar...")
+                self.update_ui_state()
+        dialog.destroy()
 
     def on_add_clicked(self, btn):
         dialog = Gtk.FileChooserNative(
@@ -548,7 +574,7 @@ class ZisoGUI(Gtk.ApplicationWindow):
         
         target_fmt = self.combo_format.get_active_id()
         level = int(self.scale_level.get_value())
-        dest_folder = self.folder_btn.get_filename() # Can be None
+        dest_folder = self.destination_folder
         
         threading.Thread(target=self.process_queue, args=(target_fmt, level, dest_folder), daemon=True).start()
 
@@ -607,7 +633,7 @@ class ZisoGUI(Gtk.ApplicationWindow):
         self.processing = False
         self.convert_btn.set_sensitive(True)
         self.tree.set_sensitive(True)
-        self.folder_btn.set_sensitive(True)
+        self.btn_select_folder.set_sensitive(True)
 
 
 def main():
