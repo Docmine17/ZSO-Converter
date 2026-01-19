@@ -13,7 +13,7 @@ A modern and lightweight application to compress and decompress PS2 games in **Z
 - **Secure**: Sandboxed execution via Flatpak, using XDG Portals.
 - **Hybrid**: Works via both graphical interface or command line.
 
-![Screenshot1](screenshot1.png)
+![Screenshot1](data/screenshot1.png)
 
 
 ## 🚀 How to Use
