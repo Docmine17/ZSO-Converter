@@ -40,5 +40,5 @@ make clean
 
 ## 📜 Credits
 
-- Original Core: **Virtuous Flame**
+- [Original Core: **Virtuous Flame**](https://github.com/ps2homebrew/Open-PS2-Loader/blob/45875da788b82002625137cfadbd0d398b674667/pc/ziso.py)
 - Development: **Gabriel**
