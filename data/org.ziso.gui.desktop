@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=ZISO Converter
+Name=ZSO Converter
 Comment=Compress PS2 ISOs to ZSO format
 Exec=ziso
 Icon=org.ziso.gui

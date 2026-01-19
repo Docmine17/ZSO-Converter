@@ -280,7 +280,7 @@ if HAS_GUI:
     class ZisoGUI(Adw.ApplicationWindow):
         def __init__(self, **kwargs):
             super().__init__(**kwargs)
-            self.set_title("ZISO Converter")
+            self.set_title("ZSO Converter")
             self.set_default_size(800, 850)
 
             # Main Layout: Toolbar View
@@ -628,7 +628,7 @@ if HAS_GUI:
             win = self.props.active_window
             Adw.AboutWindow(
                 transient_for=win,
-                application_name="ZISO Converter",
+                application_name="ZSO Converter",
                 application_icon="org.ziso.gui",
                 version="2.2",
                 developer_name="Virtuous Flame & Gabriel",

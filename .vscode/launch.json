@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build & Run Flatpak",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "make",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
