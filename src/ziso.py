@@ -14,8 +14,6 @@ from multiprocessing import Pool
 from getopt import gnu_getopt, GetoptError
 
 
-# GUI support is handled later in the file for GTK4
-HAS_GUI = False
 
 ZISO_MAGIC = 0x4F53495A
 DEFAULT_ALIGN = 0
@@ -349,12 +347,13 @@ if HAS_GUI:
             content_box.append(self.list_group)
 
             # 1. File List Setup
-            self.store = Gtk.ListStore(str, str, str, str, float, str) # Name, Size, Type, Progress_str, Progress_val, Path
+            self.store = Gtk.ListStore(str, str, str, float, str) # Name, Type, Status, Pct, Path
             
             self.tree = Gtk.TreeView(model=self.store)
             self.tree.set_vexpand(True)
             self.tree.set_enable_search(False)
-            self.tree.add_css_class("data-table") 
+            self.tree.add_css_class("data-table")
+            self.tree.set_headers_visible(False)
 
             # Custom CSS for larger text
             css_provider = Gtk.CssProvider()
@@ -363,8 +362,7 @@ if HAS_GUI:
 
             # Columns
             self.add_column("Arquivo", 0, expand=True)
-            self.add_column("Tamanho", 1)
-            self.add_column("Status", 3)
+            self.add_column("Status", 2)
             
             scroll = Gtk.ScrolledWindow()
             scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -530,19 +528,12 @@ if HAS_GUI:
         def add_file_to_list(self, filepath):
             # Duplicate check
             for row in self.store:
-                if row[5] == filepath:
+                if row[4] == filepath:
                     return
 
             name = os.path.basename(filepath)
-            size = os.path.getsize(filepath)
             
-            def format_size(s):
-                for unit in ['B', 'KB', 'MB', 'GB']:
-                    if s < 1024.0: return "%3.1f %s" % (s, unit)
-                    s /= 1024.0
-                return "%3.1f TB" % s
-
-            self.store.append([name, format_size(size), os.path.splitext(filepath)[1].lower(), "Pendente", 0.0, filepath])
+            self.store.append([name, os.path.splitext(filepath)[1].lower(), "Pendente", 0.0, filepath])
             self.update_ui_state()
 
         def update_ui_state(self):
@@ -570,8 +561,8 @@ if HAS_GUI:
 
         def process_queue(self, target_fmt, level, dest_folder):
             for row in self.store:
-                input_path = row[5]
-                ext = row[2]
+                input_path = row[4]
+                ext = row[1]
                 
                 if (target_fmt == "zso" and ext == ".zso") or (target_fmt == "iso" and ext == ".iso"):
                     GLib.idle_add(self.update_status, row.iter, "Ignorado")
@@ -600,7 +591,7 @@ if HAS_GUI:
             GLib.idle_add(self.finish_processing)
 
         def update_status(self, iter, text):
-            self.store.set_value(iter, 3, text)
+            self.store.set_value(iter, 2, text)
 
         def finish_processing(self):
             self.processing = False
@@ -635,14 +626,15 @@ if HAS_GUI:
 
         def on_about(self, action, param):
             win = self.props.active_window
-            dialog = Adw.AboutWindow(transient_for=win)
-            dialog.set_application_name("ZISO Converter")
-            dialog.set_application_icon("org.ziso.gui")
-            dialog.set_version("2.2")
-            dialog.set_developer_name("Virtuous Flame & Gabriel")
-            dialog.set_comments("Modern GTK4/Adwaita GUI for ZISO")
-            dialog.set_website("https://github.com/codestation/ziso")
-            dialog.present()
+            Adw.AboutWindow(
+                transient_for=win,
+                application_name="ZISO Converter",
+                application_icon="org.ziso.gui",
+                version="2.2",
+                developer_name="Virtuous Flame & Gabriel",
+                comments="Modern GTK4/Adwaita GUI for ZISO",
+                website="https://github.com/codestation/ziso"
+            ).present()
 
 
 def parse_args():

@@ -22,13 +22,9 @@ modules:
   - name: ziso
     buildsystem: simple
     build-commands:
-      - install -D ziso.py /app/bin/ziso
-      - install -D org.ziso.gui.desktop /app/share/applications/org.ziso.gui.desktop
-      - install -D icon.svg /app/share/icons/hicolor/scalable/apps/org.ziso.gui.svg
+      - install -D src/ziso.py /app/bin/ziso
+      - install -D data/org.ziso.gui.desktop /app/share/applications/org.ziso.gui.desktop
+      - install -D data/icon.svg /app/share/icons/hicolor/scalable/apps/org.ziso.gui.svg
     sources:
-      - type: file
-        path: ziso.py
-      - type: file
-        path: org.ziso.gui.desktop
-      - type: file
-        path: icon.svg
+      - type: dir
+        path: .
