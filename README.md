@@ -26,6 +26,9 @@ make
 # 2. Run
 make run
 
+# 3. Generate .flatpak Bundle (for distribution)
+make bundle
+
 # 3. Clean build files
 make clean
 ```
