@@ -1,8 +1,9 @@
 # ZSO Converter
 
+![Icon](data/icon.svg)
+
 A modern and lightweight application to compress and decompress PS2 games in **ZSO** (ZISO) format, built with **GTK 4** and **LibAdwaita**.
 
-![Icon](data/icon.svg)
 
 ## ✨ Features
 
@@ -11,6 +12,9 @@ A modern and lightweight application to compress and decompress PS2 games in **Z
 - **Multiprocessing**: Accelerated compression using all processor cores.
 - **Secure**: Sandboxed execution via Flatpak, using XDG Portals.
 - **Hybrid**: Works via both graphical interface or command line.
+
+![Screenshot1](screenshot1.png)
+
 
 ## 🚀 How to Use
 
