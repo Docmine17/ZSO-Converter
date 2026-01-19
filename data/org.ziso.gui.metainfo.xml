@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.ziso.gui</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <name>ZSO Converter</name>
+  <summary>Compress and decompress PS2 ZSO images</summary>
+  <description>
+    <p>
+      ZSO Converter is a modern, easy-to-use application for managing PlayStation 2 disc images.
+      It allows you to compress standard ISO files into the ZSO format (ZISO) to save disk space
+      while maintaining compatibility with loaders like OPL and PS2 emulators.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Modern GTK4 interface with LibAdwaita</li>
+      <li>Multi-threaded compression</li>
+      <li>Drag and drop support</li>
+      <li>Native integration with Linux desktop</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">org.ziso.gui.desktop</launchable>
+  <developer_name>Virtuous Flame &amp; Gabriel</developer_name>
+  <screenshots>
+    <screenshot type="default">
+      <image>data/screenshot.png</image>
+    </screenshot>
+    <screenshot>
+      <image>data/screenshot1.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1"/>
+</component>

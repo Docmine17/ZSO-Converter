@@ -23,6 +23,7 @@ modules:
     build-commands:
       - install -D src/ziso.py /app/bin/ziso
       - install -D data/org.ziso.gui.desktop /app/share/applications/org.ziso.gui.desktop
+      - install -D data/org.ziso.gui.metainfo.xml /app/share/metainfo/org.ziso.gui.metainfo.xml
       - install -D data/icon.svg /app/share/icons/hicolor/scalable/apps/org.ziso.gui.svg
       - mkdir -p /app/share/locale/pt_BR/LC_MESSAGES
       - msgfmt po/pt_BR.po -o /app/share/locale/pt_BR/LC_MESSAGES/org.ziso.gui.mo

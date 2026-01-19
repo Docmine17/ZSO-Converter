@@ -4,6 +4,30 @@ import os
 import threading
 import locale
 
+# Copyright (c) 2011 by Virtuous Flame
+# Based BOOSTER 1.01 CSO Compressor
+# Adapted for codestation's ZSO format
+# GUI Implementation (GTK4) by Gabriel
+#
+# GNU General Public Licence (GPL)
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+# Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+__author__ = "Virtuous Flame & Gabriel"
+__license__ = "GPL"
+__version__ = "1.0"
+
 import lz4.block
 from struct import pack, unpack
 from multiprocessing import Pool
@@ -60,7 +84,7 @@ def lz4_decompress(compressed, block_size):
 
 
 def usage():
-    print("ziso-python 2.1 by Virtuous Flame (GUI Edition by Gabriel)")
+    print("ziso-python (GTK4) 1.0 by Virtuous Flame & Gabriel")
     print("Usage: ziso [-c level] [-m] [-t percent] [-h] infile outfile")
     print("  -c level: 1-12 compress ISO to ZSO, 1 for standard compression, >1 for high compression")
     print("              0 decompress ZSO to ISO")
@@ -637,7 +661,7 @@ if HAS_GUI:
                 transient_for=win,
                 application_name=_("ZSO Converter"),
                 application_icon="org.ziso.gui",
-                version="2.2",
+                version="1.0",
                 developer_name="Virtuous Flame & Gabriel",
                 comments=_("Modern GTK4/Adwaita GUI for ZSO"),
                 website="https://github.com/codestation/ziso"
@@ -701,7 +725,7 @@ def main():
         # CLI Mode
         level, bsize, fname_in, fname_out, mp, threshold, align, padding = parse_args()
         
-        print(f"ziso-python 2.1 (CLI)")
+        print(f"ziso-python 1.0 (CLI)")
         if level == 0:
             print(f"Decompressing {fname_in} to {fname_out}...")
             decompress_zso(fname_in, fname_out)
