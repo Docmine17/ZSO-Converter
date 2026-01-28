@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.vscode/
+build-dir/
+.flatpak-builder/
+repo/
+*.flatpak

@@ -686,9 +686,10 @@ if HAS_GUI:
                 application_name=_("ZSO Converter"),
                 application_icon="org.ziso.gui",
                 version=__version__,
-                developer_name="Virtuous Flame & Gabriel",
+                developer_name="Docmine17",
                 comments=_("Modern GTK4/Adwaita GUI for ZSO"),
-                website="https://github.com/codestation/ziso"
+                website="https://github.com/Docmine17/ZSO-Converter/",
+                issue_url="https://github.com/Docmine17/ZSO-Converter/issues"
             ).present()
 
 
