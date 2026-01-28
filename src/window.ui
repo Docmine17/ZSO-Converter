@@ -58,35 +58,88 @@
             <property name="orientation">vertical</property>
             
             <child>
-              <object class="GtkScrolledWindow">
+
+              <object class="GtkStack" id="stack_view">
                 <property name="vexpand">True</property>
+                <property name="transition-type">crossfade</property>
+                
+                <!-- Page: Empty State -->
                 <child>
-                  <object class="AdwClamp">
-                    <property name="maximum-size">800</property>
-                    <property name="tightening-threshold">600</property>
-                    <property name="margin-top">10</property>
-                    <property name="margin-bottom">10</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    
-                    <child>
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">20</property>
-                        
-                        <!-- File List Group -->
+                  <object class="GtkStackPage">
+                    <property name="name">empty</property>
+                    <property name="child">
+                      <object class="AdwStatusPage">
+                        <property name="icon-name">org.ziso.gui</property>
+                        <property name="title" translatable="yes">ZSO Converter</property>
+                        <property name="description" translatable="yes">Add or drop files to start</property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+
+                <!-- Page: File List -->
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">list</property>
+                    <property name="child">
+                      <object class="GtkScrolledWindow">
+                        <property name="vexpand">True</property>
                         <child>
-                          <object class="AdwPreferencesGroup" id="list_group">
+                          <object class="AdwClamp">
+                            <property name="maximum-size">800</property>
+                            <property name="tightening-threshold">600</property>
+                            <property name="margin-top">10</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="margin-start">10</property>
+                            <property name="margin-end">10</property>
+                            
                             <child>
-                              <object class="GtkListBox" id="file_list">
-                                <property name="selection-mode">none</property>
-                                <style>
-                                  <class name="boxed-list"/>
-                                </style>
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="spacing">20</property>
+                                
+                                <!-- File List Group -->
+                                <child>
+                                  <object class="AdwPreferencesGroup" id="list_group">
+                                    <child>
+                                      <object class="GtkListBox" id="file_list">
+                                        <property name="selection-mode">none</property>
+                                        <style>
+                                          <class name="boxed-list"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+
                               </object>
                             </child>
                           </object>
                         </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+
+              </object>
+            </child>
+
+
+
+
+            <!-- Bottom Fixed Area -->
+            <child>
+               <object class="AdwClamp">
+                  <property name="maximum-size">800</property>
+                  <property name="tightening-threshold">600</property>
+                  <child>
+                    <object class="GtkBox">
+                      <property name="orientation">vertical</property>
+                      <property name="spacing">20</property>
+                      <property name="margin-top">10</property>
+                      <property name="margin-bottom">10</property>
+                      <property name="margin-start">10</property>
+                      <property name="margin-end">10</property>
 
                         <!-- Controls Group -->
                         <child>
@@ -153,7 +206,7 @@
                           </object>
                         </child>
 
-                        <!-- Convert Button (Moved inside scroll) -->
+                        <!-- Convert Button -->
                         <child>
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
@@ -176,11 +229,9 @@
                           </object>
                         </child>
 
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
+                    </object>
+                  </child>
+               </object>
             </child>
 
 

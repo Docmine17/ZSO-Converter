@@ -334,7 +334,10 @@ if HAS_GUI:
             self.window = self.builder.get_object("window")
             self.window.set_application(app)
             
+            self.window.set_application(app)
+            
             self.file_list = self.builder.get_object("file_list")
+            self.stack_view = self.builder.get_object("stack_view") # GtkStack
             
             self.split_btn = self.builder.get_object("split_btn")
             self.controls_group = self.builder.get_object("controls_group")
@@ -478,6 +481,7 @@ if HAS_GUI:
             btn_remove.set_valign(Gtk.Align.CENTER)
             btn_remove.connect("clicked", lambda b: self.remove_row(row))
             row.add_suffix(btn_remove)
+            row.btn_remove = btn_remove # keep ref
             
             # Status Icon (hidden initially or showing pending state if desired, but let's just use subtitle for pending)
             # We will add the custom checkmark later when done
@@ -491,24 +495,39 @@ if HAS_GUI:
             self.update_ui_state()
 
         def update_ui_state(self):
+            # Only block global controls, not the list itself (so it remains scrollable)
             if self.processing:
                 self.convert_btn.set_sensitive(False)
                 self.controls_group.set_sensitive(False)
-                self.file_list.set_sensitive(False)
-                return
-            
-            self.file_list.set_sensitive(True)
+                # self.file_list.set_sensitive(False) # Keep list interactive
+            else:
+                self.controls_group.set_sensitive(True)
+                
             count = 0
             child = self.file_list.get_first_child()
             while child:
                 count += 1
+                # Disable remove button if processing
+                if hasattr(child, 'btn_remove'):
+                    child.btn_remove.set_sensitive(not self.processing)
+                    
                 child = child.get_next_sibling()
 
+            # Enable file_list always (for scrolling)
+            self.file_list.set_sensitive(True)
+
             has_files = count > 0
+            
+            # Toggle Stack View
+            if count == 0:
+                self.stack_view.set_visible_child_name("empty")
+            else:
+                self.stack_view.set_visible_child_name("list")
+            
             has_dest = self.destination_folder is not None
             
-            self.convert_btn.set_sensitive(has_files and has_dest)
-            self.controls_group.set_sensitive(True)
+            if not self.processing:
+                self.convert_btn.set_sensitive(has_files and has_dest)
 
         def process_queue(self, target_fmt, level, dest_folder):
             
@@ -604,18 +623,11 @@ if HAS_GUI:
             GLib.idle_add(self.finish_processing)
 
         def update_row_starting(self, row):
-            # Set subtitle to Processing
-            row.set_subtitle(_("Processing..."))
+            # Set subtitle to initial percentage
+            row.set_subtitle("0%")
             
-            # Add Percentage Label as suffix
-            lbl = Gtk.Label(label="0%")
-            lbl.add_css_class("dim-label") # Optional styling
-            row.add_suffix(lbl)
-            row.pct_label = lbl # keep ref
-
         def update_row_progress(self, row, text):
-            if hasattr(row, 'pct_label'):
-                row.pct_label.set_label(text)
+            row.set_subtitle(text)
 
         def update_row_status(self, row, text, css_class=None):
             row.set_subtitle(text)
@@ -628,10 +640,8 @@ if HAS_GUI:
             if css_class:
                 row.add_css_class(css_class)
             
-            # Remove percentage label if exists
-            if hasattr(row, 'pct_label'):
-                row.remove(row.pct_label)
-                del row.pct_label
+            if css_class:
+                row.add_css_class(css_class)
 
         def finish_processing(self):
             self.processing = False
@@ -660,6 +670,8 @@ if HAS_GUI:
 
         def on_clear(self, action, param):
             if self.gui:
+                if self.gui.processing:
+                    return # Block clear if processing
                 child = self.gui.file_list.get_first_child()
                 while child:
                     next_child = child.get_next_sibling()
