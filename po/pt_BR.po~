@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZSO Converter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-19 17:00-0300\n"
+"PO-Revision-Date: 2026-01-19 17:15-0300\n"
+"Last-Translator: Gabriel\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ZSO Converter"
+msgstr "Conversor ZSO"
+
+msgid "Add files or folders"
+msgstr "Adicionar arquivos ou pastas"
+
+msgid "Add Folder..."
+msgstr "Adicionar Pasta..."
+
+msgid "Clear List"
+msgstr "Limpar Lista"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Export Format"
+msgstr "Formato de Exportação"
+
+msgid "Convert to ZSO"
+msgstr "Converter para ZSO"
+
+msgid "Convert to ISO (Decompress)"
+msgstr "Converter para ISO (Descomprimir)"
+
+msgid "Compression Level"
+msgstr "Nível de Compressão"
+
+msgid "Higher level = smaller size, but slower"
+msgstr "Maior nível = menor tamanho, mas mais lento"
+
+msgid "Modern GTK4/Adwaita GUI for ZSO"
+msgstr "Interface moderna em GTK4/Adwaita para ZSO"
+
+msgid "Save to"
+msgstr "Salvar em"
+
+msgid "Destination folder (Required)"
+msgstr "Pasta de destino (Obrigatória)"
+
+msgid "Convert"
+msgstr "Converter"
+
+msgid "Add Files"
+msgstr "Adicionar Arquivos"
+
+msgid "PS2 Images (.iso, .zso)"
+msgstr "Imagens de PS2 (.iso, .zso)"
+
+msgid "Select Folder"
+msgstr "Selecionar Pasta"
+
+msgid "Select Destination Folder"
+msgstr "Selecionar Pasta de Destino"
+
+msgid "Pending"
+msgstr "Pendente"
+
+msgid "Ignored"
+msgstr "Ignorado"
+
+msgid "Processing..."
+msgstr "Processando..."
+
+msgid "Completed"
+msgstr "Concluído"
+
+msgid "Error"
+msgstr "Erro"

@@ -36,17 +36,25 @@ import gettext
 
 # Setup translation
 APP_ID = "org.ziso.gui"
-LOCALE_DIR = "/app/share/locale" if os.path.exists("/app") else os.path.join(os.path.dirname(__file__), "..", "locale")
+LOCALE_DIR = "/app/share/locale" if os.path.exists("/app") else os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "locale"))
 
 try:
     locale.setlocale(locale.LC_ALL, '')
 except locale.Error:
     print("Warning: Failed to set locale to default.")
 
+# Setup C gettext (for GtkBuilder)
+if hasattr(locale, 'bindtextdomain'):
+    try:
+        locale.bindtextdomain(APP_ID, LOCALE_DIR)
+        locale.textdomain(APP_ID)
+    except Exception as e:
+        print(f"Warning: Failed to bind textdomain for C library: {e}")
+
+# Setup Python gettext
 gettext.bindtextdomain(APP_ID, LOCALE_DIR)
 gettext.textdomain(APP_ID)
 _ = gettext.gettext
-
 
 
 ZISO_MAGIC = 0x4F53495A

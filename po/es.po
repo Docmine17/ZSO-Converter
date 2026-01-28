@@ -1,35 +1,41 @@
+# Spanish translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: ZSO Converter\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-28 15:30-0300\n"
-"PO-Revision-Date: 2026-01-19 17:15-0300\n"
-"Last-Translator: Gabriel\n"
-"Language-Team: Portuguese (Brazil)\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2026-01-28 15:30-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/ziso.py:402
 msgid "Add Files"
-msgstr "Adicionar Arquivos"
+msgstr "Añadir archivos"
 
 #: src/ziso.py:409
 msgid "PS2 Images (.iso, .zso)"
-msgstr "Imagens de PS2 (.iso, .zso)"
+msgstr "Imágenes de PS2 (.iso, .zso)"
 
 #: src/ziso.py:428
 msgid "Select Folder"
-msgstr "Selecionar Pasta"
+msgstr "Seleccionar carpeta"
 
 #: src/ziso.py:444
 msgid "Select Destination Folder"
-msgstr "Selecionar Pasta de Destino"
+msgstr "Seleccionar carpeta de destino"
 
 #: src/ziso.py:474
 msgid "Pending"
-msgstr "Pendente"
+msgstr "Pendiente"
 
 #: src/ziso.py:601
 msgid "Ignored"
@@ -37,11 +43,11 @@ msgstr "Ignorado"
 
 #: src/ziso.py:618
 msgid "Completed"
-msgstr "Concluído"
+msgstr "Completado"
 
 #: src/ziso.py:620
 msgid "Error"
-msgstr "Erro"
+msgstr "Error"
 
 #: src/ziso.py:686 src/window.ui:27 src/window.ui:73
 msgid "ZSO Converter"
@@ -49,23 +55,23 @@ msgstr "Conversor ZSO"
 
 #: src/ziso.py:690
 msgid "Modern GTK4/Adwaita GUI for ZSO"
-msgstr "Interface moderna em GTK4/Adwaita para ZSO"
+msgstr "Interfaz moderna GTK4/Adwaita para ZSO"
 
 #: src/window.ui:8
 msgid "Add Folder..."
-msgstr "Adicionar Pasta..."
+msgstr "Añadir carpeta..."
 
 #: src/window.ui:15
 msgid "Clear List"
-msgstr "Limpar Lista"
+msgstr "Limpiar lista"
 
 #: src/window.ui:19
 msgid "About"
-msgstr "Sobre"
+msgstr "Acerca de"
 
 #: src/window.ui:36
 msgid "Add files or folders"
-msgstr "Adicionar arquivos ou pastas"
+msgstr "Añadir archivos o carpetas"
 
 #: src/window.ui:41
 msgid "Open"
@@ -73,48 +79,36 @@ msgstr "Abrir"
 
 #: src/window.ui:74
 msgid "Add or drop files to start"
-msgstr "Adicione ou solte arquivos para iniciar"
+msgstr "Añada o suelte archivos para comenzar"
 
 #: src/window.ui:149
 msgid "Export Format"
-msgstr "Formato de Exportação"
+msgstr "Formato de exportación"
 
 #: src/window.ui:157
 msgid "Compress to ZSO"
-msgstr "Comprimir para ZSO"
+msgstr "Comprimir a ZSO"
 
 #: src/window.ui:164
 msgid "Decompress to ISO"
-msgstr "Descomprimir para ISO"
+msgstr "Descomprimir a ISO"
 
 #: src/window.ui:173
 msgid "Compression Level"
-msgstr "Nível de Compressão"
+msgstr "Nivel de compresión"
 
 #: src/window.ui:174
 msgid "Higher level = smaller size, but slower"
-msgstr "Maior nível = menor tamanho, mas mais lento"
+msgstr "Mayor nivel = menor tamaño, pero más lento"
 
 #: src/window.ui:195
 msgid "Save to"
-msgstr "Salvar em"
+msgstr "Guardar en"
 
 #: src/window.ui:196
 msgid "Destination folder (Required)"
-msgstr "Pasta de destino (Obrigatória)"
+msgstr "Carpeta de destino (Requerido)"
 
 #: src/window.ui:218
 msgid "Convert"
-msgstr "Converter"
-
-#~ msgid "File"
-#~ msgstr "Arquivo"
-
-#~ msgid "Status"
-#~ msgstr "Status"
-
-#~ msgid "Convert to ISO (Decompress)"
-#~ msgstr "Converter para ISO (Descomprimir)"
-
-#~ msgid "Processing..."
-#~ msgstr "Processando..."
+msgstr "Convertir"
